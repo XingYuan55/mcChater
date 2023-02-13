@@ -13,7 +13,7 @@ chater = mineflayer.createBot(
     "version": "1.16.5",
     }
 )
-yuan.set_yuan_account("Xingyuan55", "13199577499") 
+yuan.set_yuan_account("yuan账号", "手机") 
 yuan = inspurai.Yuan(engine='dialog',
             input_prefix="问：“",
             input_suffix="”",
