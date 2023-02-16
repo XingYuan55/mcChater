@@ -49,16 +49,16 @@ def strstartwith(str, e):
     if str[1] == e[0]: return True
     else: return False 
 
-# @On(chater, "chat")
-# def pvper(this, username, message, *args):
-#     if(message == 'dw'):
-#         player = chater.players[username]
-#         if not player:
-#             chater.chat("你搁哪呢")
-#             return None
-#         chater.pvp.attack(player.entity)
-#     if message == 'stop':
-#         chater.pvp.stop()
+@On(chater, "chat")
+def pvper(this, username, message, *args):
+    if(message == 'dw'):
+        player = chater.players[username]
+        if not player:
+            chater.chat("你搁哪呢")
+            return None
+        chater.pvp.attack(player.entity)
+    if message == 'stop':
+        chater.pvp.stop()
 
 @On(chater, "login")
 def login(this):

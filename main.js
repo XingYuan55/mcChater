@@ -54,7 +54,14 @@ chater.on('message', (message) => {
 // chater.on("login", (login) =>
 //     chat_to_game("/l tt5566tt")
 // })
+<<<<<<< HEAD
 chat_to_game("/l tt5566tt")
 chat_to_game("/tpa MU_JieShuo")
 
+=======
+chat_to_game("/l 登录！")
+chat_to_game("有人吗？wanghany马上来")
+chat_to_game("/tpa wanghany")
+chat_to_game("/tpa wanghany")
+>>>>>>> FETCH_HEAD
 
