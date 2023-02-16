@@ -26,6 +26,20 @@ chater = mineflayer.createBot(
     "version": "1.16.5",
     }
 )
+<<<<<<< HEAD
+=======
+yuan.set_yuan_account("yuan账号", "手机") 
+yuan = inspurai.Yuan(engine='dialog',
+            input_prefix="问：“",
+            input_suffix="”",
+            output_prefix="答：“",
+            output_suffix="”",
+            append_output_prefix_to_query=True,
+            topK=5,
+            temperature=1,
+            topP=0.8,
+            frequencyPenalty=1.2)
+>>>>>>> FETCH_HEAD
 
 # chater.loadPlugin(pathfinder)
 # chater.loadPlugin(pvp)
