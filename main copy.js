@@ -16,10 +16,10 @@ const chater = mineflayer.createBot(
 chater.loadPlugin(pathfinder)
 chater.loadPlugin(pvp)
 chater.on('chat', (username, message) => {
-    if (message === 'dw') {
-      chat_to_game("/tpa " + username)
+    if (message === 'dr') {
+      chat_to_game("/tpa Regedit")
 
-      const player = chater.players[username]
+      const player = chater.players['Regedit']
   
       if (!player) {
         chater.chat("I can't see you.")
@@ -43,10 +43,7 @@ chater.on('chat', (username, message) => {
     if(username == chater.username) return;
     if(message == '1')  chater.chat("/tpaccept")
 })
-chater.on('chat', (username, message) => {
-  if(username != 'wanghany') return;
-  chater.chat("/" + message)
-})
+
 chater.on('message', (message) => {
     console.log(message.toAnsi())
 })
@@ -55,6 +52,6 @@ chater.on('message', (message) => {
 //     chat_to_game("/l tt5566tt")
 // })
 chat_to_game("/l tt5566tt")
-chat_to_game("/tpa MU_JieShuo")
+chat_to_game("/tpa Regedit")
 
 
