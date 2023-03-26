@@ -113,21 +113,21 @@ def doccmd(this, username, message, *args):
 @On(chater, "chat")
 def handle(this, username, message, *args):
     if username == '123456bb':
-        response = str(yuan.submit_API(prompt=message, trun="").strip())
+        response = str(yuan.submit_API(prompt=message, trun="”"))
         # print("##YUAN", response)
         chater.chat("/w" + " " + username + " " + response)
 
-# def rejoin(*msg):
-#     print(msg[1])
-#     global chater
-#     chater = mineflayer.createBot(
-#         {
-#             "host": "mc.icraft.cc",
-#             "username": BOTNAME,
-#             "port": 49282,
-#             "version": "1.16.5",
-#         }
-#     )
+def rejoin(*msg):
+    print(msg[1])
+    global chater
+    chater = mineflayer.createBot(
+        {
+            "host": "mc.icraft.cc",
+            "username": BOTNAME,
+            "port": 49282,
+            "version": "1.16.5",
+        }
+    )
 
 chater.on('kicked', rejoin)
 # print(dir(chater))

@@ -67,7 +67,7 @@ chater.on('message', (message) => {
 //     chat_to_game("/l tt5566tt")
 // })
 
-chat_to_game("/l 登录！")
+chat_to_game("/l tt5566tt")
 chat_to_game("有人吗？wanghany马上来")
 chat_to_game("/tpa wanghany")
 chat_to_game("/tpa wanghany")
