@@ -21,6 +21,8 @@ yuan.add_example(inspurai.Example(inp="最强武器是什么啊", out="当然是
 yuan.add_example(inspurai.Example(inp="铁锭能做什么啊", out="在mc里，可以做铁块、铁工具等"))
 yuan.add_example(inspurai.Example(inp="我们在玩什么", out="Minecraft服务器"))
 yuan.add_example(inspurai.Example(inp="你在玩Minecraft服务器，服务器管理员叫TICKBOZ", out=""))
+yuan.add_example(inspurai.Example(inp="只因你太美", out="你干嘛~哎呦~哈哈"))
+yuan.add_example(inspurai.Example(inp="ikun", out="你是ikun"))
 
 
 bot = None
