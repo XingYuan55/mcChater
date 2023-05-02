@@ -1,7 +1,27 @@
 from javascript import require, On, Once
 import time
+import random
+import sys
+sys.path.append(".")
+import inspurai
 
 mineflayer = require("mineflayer")
+inspurai.set_yuan_account("Xingyuan55", "13199577499")
+yuan = inspurai.Yuan(
+    engine="dialog",
+    input_prefix="对话：“",
+    input_suffix="”",
+    output_prefix="回答：“",
+    output_suffix="”",
+)
+
+yuan.add_example(inspurai.Example(inp="本机器人叫chater", out=""))
+yuan.add_example(inspurai.Example(inp="本机器人叫chater，由wanghany制造", out=""))
+yuan.add_example(inspurai.Example(inp="最强武器是什么啊", out="当然是神剑"))
+yuan.add_example(inspurai.Example(inp="铁锭能做什么啊", out="在mc里，可以做铁块、铁工具等"))
+yuan.add_example(inspurai.Example(inp="我们在玩什么", out="Minecraft服务器"))
+yuan.add_example(inspurai.Example(inp="你在玩Minecraft服务器，服务器管理员叫TICKBOZ", out=""))
+
 
 bot = None
 ginit_args = {}
@@ -14,8 +34,21 @@ def create_bot(**init_args):
 op_list = [
     "wanghany",
     "liumingyang123",
-    "LCF"
+    "LCF",
+    "hu_tao_shawo",
+    "xUwUcharax",
+    "chara",
+    "zyc555",
+    "314159265"
 ]
+
+def on_dialog():
+    @On(bot, "chat")
+    def handle(this, username, message, *args):
+        if message.startswith("chater，") or message.startswith("chater,"):
+            ans = yuan.submit_API(prompt=username + "对你说：" + message,trun="”")
+            print("yuan:", ans)
+            bot.chat(ans) 
 
 def listen_msg():
     @On(bot, "message")
@@ -49,6 +82,12 @@ def come():
             bot.chat("/tpa " + username)
             bot.chat("传送请求已发送至：" + username)
 
+def fake_tps():
+    @On(bot, "chat")
+    def handle(thie, username, message, *args):
+        if message[:3] == "tps":
+            bot.chat(f"当前tps：{random.randint(4, 22)}")
+
 def docmd():
     @On(bot, "chat")
     def handle(this, username, message, *args):
@@ -72,3 +111,8 @@ def on_kicked():
 #             bot.chat("/ " + message)
     
 
+def on_xc():
+    @On(bot, "chat")
+    def handle(this, username, message, *args):
+        if username in ["1762", "hu_tao_shaw", "314159265"]:
+            bot.chat("/me 小丑" + username + "来咯")
