@@ -77,6 +77,25 @@ def tpac():
         if message == '1':
             bot.chat("/tpaccept")
 
+def add_or_del_operator():
+    @On(bot, "chat")
+    def handle(this, username, message, *args):
+        if username == 'wanghany':
+            if message.startswith("添加操作员"):
+                name = message[5:].strip()
+                if name not in op_list:
+                    op_list.append(name)
+                else:
+                    bot.chat(name + " 已经是操作员了！")
+            if message.startswith("删除操作员"):
+                name = message[5:].strip()
+                if name in op_list:
+                    op_list.pop(name)
+                else:
+                    bot.chat(name + " 本来就不是操作员！")
+            if 'wanghany' not in op_list:
+                op_list.append("wanghany")
+
 def come():
     @On(bot, "chat")
     def handle(thie, username, message, *args):
@@ -84,6 +103,11 @@ def come():
             bot.chat("/tpa " + username)
             bot.chat("传送请求已发送至：" + username)
 
+def introduce(msg):
+    @On(bot, "login")
+    def handle(*args):
+        bot.chat(msg)
+    
 def fake_tps():
     @On(bot, "chat")
     def handle(thie, username, message, *args):
