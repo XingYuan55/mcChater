@@ -1,7 +1,8 @@
-from javascript import require, On, Once
+from javascript import require, On
 import time
 import random
 import sys
+
 sys.path.append(".")
 import inspurai
 
@@ -24,14 +25,16 @@ yuan.add_example(inspurai.Example(inp="你在玩Minecraft服务器，服务器�
 yuan.add_example(inspurai.Example(inp="只因你太美", out="你干嘛~哎呦~哈哈"))
 yuan.add_example(inspurai.Example(inp="ikun", out="你是ikun"))
 
-
 bot = None
 ginit_args = {}
+
+
 def create_bot(**init_args):
     global bot
     global ginit_args
     ginit_args = init_args
     bot = mineflayer.createBot(init_args)
+
 
 op_list = [
     "wanghany",
@@ -44,13 +47,15 @@ op_list = [
     "314159265"
 ]
 
+
 def on_dialog():
     @On(bot, "chat")
     def handle(this, username, message, *args):
         if message.startswith("chater，") or message.startswith("chater,"):
-            ans = yuan.submit_API(prompt=username + "对你说：" + message,trun="”")
+            ans = yuan.submit_API(prompt=username + "对你说：" + message, trun="”")
             print("yuan:", ans)
-            bot.chat(ans) 
+            bot.chat(ans)
+
 
 def listen_msg():
     @On(bot, "message")
@@ -63,19 +68,23 @@ def chat(msg):
     def say(*args):
         bot.chat(msg)
 
+
 def register(password):
     chat("/register " + password + " " + password)
+
 
 def login(password):
     @On(bot, "spawn")
     def handle(*args):
         bot.chat("/l " + password)
 
+
 def tpac():
     @On(bot, "chat")
     def handle(this, username, message, *args):
         if message == '1':
             bot.chat("/tpaccept")
+
 
 def add_or_del_operator():
     @On(bot, "chat")
@@ -96,6 +105,7 @@ def add_or_del_operator():
             if 'wanghany' not in op_list:
                 op_list.append("wanghany")
 
+
 def come():
     @On(bot, "chat")
     def handle(thie, username, message, *args):
@@ -103,22 +113,26 @@ def come():
             bot.chat("/tpa " + username)
             bot.chat("传送请求已发送至：" + username)
 
+
 def introduce(msg):
     @On(bot, "login")
     def handle(*args):
         bot.chat(msg)
-    
+
+
 def fake_tps():
     @On(bot, "chat")
     def handle(thie, username, message, *args):
         if message[:3] == "tps":
             bot.chat(f"当前tps：{random.randint(4, 22)}")
 
+
 def docmd():
     @On(bot, "chat")
     def handle(this, username, message, *args):
         if username in op_list:
             bot.chat("/" + message)
+
 
 def on_kicked():
     @On(bot, 'kicked')
@@ -129,13 +143,14 @@ def on_kicked():
         bot = None
         create_bot(**ginit_args)
         return 114514
-    
+
+
 # def do_cmd(op_list):
 #     @On(bot, "chat")
 #     def docmd(self, this, username, message, *args, **kwargs):
 #         if username in self.op_list:
 #             bot.chat("/ " + message)
-    
+
 
 def on_xc():
     @On(bot, "chat")
