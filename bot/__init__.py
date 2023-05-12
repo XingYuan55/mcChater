@@ -1,10 +1,11 @@
 from javascript import require, On
-import time
+import re
 import random
 import sys
 
 sys.path.append(".")
 import inspurai
+from stats import opinion
 
 mineflayer = require("mineflayer")
 inspurai.set_yuan_account("Xingyuan55", "13199577499")
@@ -46,15 +47,6 @@ op_list = [
     "zyc555",
     "314159265"
 ]
-
-
-def on_dialog():
-    @On(bot, "chat")
-    def handle(this, username, message, *args):
-        if message.startswith("chater，") or message.startswith("chater,"):
-            ans = yuan.submit_API(prompt=username + "对你说：" + message, trun="”")
-            print("yuan:", ans)
-            bot.chat(ans)
 
 
 def listen_msg():
@@ -122,7 +114,7 @@ def introduce(msg):
 
 def fake_tps():
     @On(bot, "chat")
-    def handle(thie, username, message, *args):
+    def handle(this, username, message, *args):
         if message[:3] == "tps":
             bot.chat(f"当前tps：{random.randint(4, 22)}")
 
@@ -145,11 +137,23 @@ def on_kicked():
         return 114514
 
 
-# def do_cmd(op_list):
-#     @On(bot, "chat")
-#     def docmd(self, this, username, message, *args, **kwargs):
-#         if username in self.op_list:
-#             bot.chat("/ " + message)
+def on_dialog():
+    @On(bot, "chat")
+    def handle(this, username, message, *args):
+        if message.startswith("chater，") or message.startswith("chater,"):
+            ans = yuan.submit_API(prompt=username + "对你说：" + message, trun="”")
+            print("yuan:", ans)
+            bot.chat(ans)
+
+
+def good_opinion():
+    @On(bot, "chat")
+    def handle(this, username, message, *args):
+        global opinion
+        if not username in opinion.keys(): opinion[username] = 50
+        if re.match("c.+好", message):
+            opinion[username] += 5
+            bot.chat(username + "你好。" + str(opinion[username]))
 
 
 def on_xc():

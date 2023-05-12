@@ -16,14 +16,16 @@ class McChater:
         # kick = bot.on_kicked() 
         bot.chat("/l wurst7")
         bot.chat("/res tp DI_XIA_CHENG")
-        bot.chat("INV，我是wanghany。我有点事qwq给我留点你的好东西啊 ")
+
 
         # bot.do_cmd(self.op_list)
 
 
 chater = McChater()
+bot.chat("嗨嗨嗨")
 bot.tpac()
 
+bot.good_opinion()
 bot.docmd()
 bot.come()
 bot.add_or_del_operator()
