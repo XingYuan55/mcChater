@@ -1,3 +1,0 @@
-opinion = {
-        "wanghany": 100,
-}

@@ -2,10 +2,11 @@ from javascript import require, On
 import re
 import random
 import sys
+import json
+import atexit
 
 sys.path.append(".")
 import inspurai
-from stats import opinion
 
 mineflayer = require("mineflayer")
 inspurai.set_yuan_account("Xingyuan55", "13199577499")
@@ -28,6 +29,8 @@ yuan.add_example(inspurai.Example(inp="ikun", out="你是ikun"))
 
 bot = None
 ginit_args = {}
+with open(r"stats.json") as of:
+    opinion = json.load(of)
 
 
 def create_bot(**init_args):
@@ -147,6 +150,8 @@ def on_dialog():
 
 
 def good_opinion():
+    global opinion
+
     @On(bot, "chat")
     def handle(this, username, message, *args):
         global opinion
@@ -154,7 +159,6 @@ def good_opinion():
         if re.match("c.+好", message):
             opinion[username] += 5
             bot.chat(username + "你好。" + str(opinion[username]))
-
 
 def on_xc():
     @On(bot, "chat")

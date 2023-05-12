@@ -1,4 +1,7 @@
+import atexit
+import json
 import bot
+from bot import opinion
 
 
 class McChater:
@@ -36,3 +39,11 @@ bot.on_dialog()
 @bot.On(bot.bot, 'kicked')
 def handle(*msg):
     print(msg[1])
+
+def save_opinion():
+    global opinion
+    with open(r"stats.json", "w") as of:
+        json.dump(opinion, of)
+        print("保存成功")
+
+atexit.register(save_opinion)
